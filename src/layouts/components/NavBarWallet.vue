@@ -52,7 +52,9 @@ const params = computed(() => {
       class="btn btn-sm btn-primary m-1 lowercase truncate !inline-flex text-xs md:!text-sm"
     >
       <Icon icon="mdi:wallet" />
-      <span class="ml-1 hidden md:block"> {{ walletStore.shortAddress || 'Wallet' }}</span>
+      <span class="ml-1 hidden md:block">
+        {{ walletStore.shortAddress || 'Wallet' }}</span
+      >
     </label>
     <div
       tabindex="0"
@@ -118,9 +120,9 @@ const params = computed(() => {
   </div>
   <Teleport to="body">
     <ping-connect-wallet
-      :chain-id="baseStore.currentChainId || 'cosmoshub-4'"
+      :chain-id="baseStore.currentChainId || 'cosvian-1'"
       :hd-path="chainStore.defaultHDPath"
-      :addr-prefix="chainStore.current?.bech32Prefix || 'cosmos'"
+      :addr-prefix="chainStore.current?.bech32Prefix || 'csv'"
       @connect="walletStateChange"
       @keplr-config="walletStore.suggestChain()"
       :params="params"
