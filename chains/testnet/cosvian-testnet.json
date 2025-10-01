@@ -1,28 +1,28 @@
 {
-  "chain_name": "cosvian",
-  "chain_id": "cosvian-1",
-  "registry_name": "cosvian",
+  "chain_name": "cosvian-testnet",
+  "chain_id": "cosvian-testnet-1",
+  "registry_name": "cosvian-testnet",
   "coingecko": "cosvian",
-  "network_type": "mainnet",
-  "pretty_name": "Cosvian Protocol",
+  "network_type": "testnet",
+  "pretty_name": "Cosvian Testnet",
   "website": "https://cosvian.io",
-  "description": "Cosvian mainnet for retail PoS fixed-fee experiments.",
+  "description": "Cosvian testnet for development and testing purposes.",
   "api": [
     {
       "provider": "cosvian",
-      "address": "https://api.cosvian.io"
+      "address": "https://testnet-api.cosvian.io"
     }
   ],
   "rpc": [
     {
       "provider": "cosvian",
-      "address": "https://rpc.cosvian.io"
+      "address": "https://testnet-rpc.cosvian.io"
     }
   ],
   "grpc": [
     {
       "provider": "cosvian",
-      "address": "https://grpc.cosvian.io"
+      "address": "https://testnet-grpc.cosvian.io"
     }
   ],
   "snapshot_provider": "",
@@ -85,11 +85,11 @@
   ],
   "assets": [
     {
-      "description": "The native token of the Cosvian chain",
+      "description": "The native token of the Cosvian testnet chain",
       "base": "ucsv",
-      "name": "Cosvian",
+      "name": "Cosvian Testnet",
       "display": "csv",
-      "symbol": "CSV",
+      "symbol": "tCSV",
       "exponent": "6",
       "type_asset": "sdk.coin",
       "denom_units": [
@@ -104,10 +104,10 @@
       ],
       "logo": "https://iili.io/KM10D1n.md.png",
       "logo_URIs": {
-        "png":  "https://iili.io/KM10D1n.md.png",
-        "svg":  "https://iili.io/KM10D1n.md.png"
+        "png": "https://iili.io/KM10D1n.md.png",
+        "svg": "https://iili.io/KM10D1n.md.png"
       },
-      "keywords": ["payments", "pos"],
+      "keywords": ["payments", "pos", "testnet"],
       "socials": {
         "website": "https://cosvian.io"
       }
