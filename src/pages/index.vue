@@ -13,19 +13,23 @@ const cosvianNetworks = ref([
     chainId: 'cosvian-1',
     color: '#812cd6',
     icon: '🚀',
+    enabled: true
   },
   {
     name: 'cosvian-testnet',
     title: 'Cosvian Testnet',
-    description: 'Testing network for development',
+    description: 'Testing network for development - Coming Soon',
     chainId: 'cosvian-testnet-1',
     color: '#666cff',
     icon: '🧪',
+    enabled: false
   },
 ]);
 
-const navigateToChain = (networkName: string) => {
-  router.push(`/${networkName}`);
+const navigateToChain = (networkName: string, enabled: boolean) => {
+  if (enabled) {
+    router.push(`/${networkName}`);
+  }
 };
 </script>
 
@@ -67,42 +71,69 @@ const navigateToChain = (networkName: string) => {
           <div
             v-for="network in cosvianNetworks"
             :key="network.name"
-            class="group cursor-pointer"
-            @click="navigateToChain(network.name)"
+            class="group"
+            :class="{ 'cursor-pointer': network.enabled, 'cursor-not-allowed opacity-60': !network.enabled }"
+            @click="navigateToChain(network.name, network.enabled)"
           >
             <div
-              class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 p-8 border border-gray-200 dark:border-gray-700 group-hover:border-purple-500 group-hover:scale-105"
+              class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg transition-all duration-300 p-8 border border-gray-200 dark:border-gray-700"
+              :class="{ 
+                'hover:shadow-2xl group-hover:border-purple-500 group-hover:scale-105': network.enabled,
+                'border-gray-300 dark:border-gray-600': !network.enabled
+              }"
             >
-              <div class="flex items-center mb-6">
-                <div
-                  class="w-16 h-16 rounded-full flex items-center justify-center text-3xl mr-4"
-                  :style="{
-                    backgroundColor: network.color + '20',
-                    color: network.color,
-                  }"
-                >
-                  {{ network.icon }}
+              <div class="flex items-center justify-between mb-6">
+                <div class="flex items-center space-x-4">
+                  <div
+                    class="w-16 h-16 rounded-full flex items-center justify-center text-3xl"
+                    :style="{
+                      backgroundColor: network.color + '20',
+                      color: network.enabled ? network.color : '#999',
+                    }"
+                  >
+                    {{ network.icon }}
+                  </div>
+                  <div>
+                    <h3 class="text-2xl font-bold text-gray-900 dark:text-white">
+                      {{ network.title }}
+                    </h3>
+                    <p class="text-gray-500 dark:text-gray-400">
+                      {{ network.chainId }}
+                    </p>
+                  </div>
                 </div>
-                <div>
-                  <h3 class="text-2xl font-bold text-gray-900 dark:text-white">
-                    {{ network.title }}
-                  </h3>
-                  <p class="text-gray-500 dark:text-gray-400">
-                    {{ network.chainId }}
-                  </p>
+                
+                <div class="flex items-center space-x-2">
+                  <div 
+                    class="w-3 h-3 rounded-full"
+                    :class="network.enabled ? 'bg-green-500 animate-pulse' : 'bg-gray-400'"
+                  ></div>
+                  <span 
+                    class="text-sm font-medium"
+                    :class="network.enabled ? 'text-green-600 dark:text-green-400' : 'text-gray-500 dark:text-gray-400'"
+                  >
+                    {{ network.enabled ? 'Live' : 'Coming Soon' }}
+                  </span>
                 </div>
               </div>
-
+              
               <p class="text-gray-600 dark:text-gray-300 mb-6">
                 {{ network.description }}
               </p>
-
-              <button
+              
+              <button 
                 class="w-full py-3 px-6 rounded-lg font-medium text-white transition-all duration-200"
-                :style="{ backgroundColor: network.color }"
+                :style="{ 
+                  backgroundColor: network.enabled ? network.color : '#999',
+                }"
+                :disabled="!network.enabled"
               >
-                Explore {{ network.title }}
-                <Icon icon="mdi:arrow-right" class="inline ml-2" />
+                {{ network.enabled ? `Explore ${network.title}` : 'Coming Soon' }}
+                <Icon 
+                  v-if="network.enabled"
+                  icon="mdi:arrow-right" 
+                  class="inline ml-2" 
+                />
               </button>
             </div>
           </div>
