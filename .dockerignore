@@ -1,0 +1,15 @@
+node_modules
+.git
+.gitignore
+.env*
+!.env.example
+dist
+.vscode
+yarn-error.log
+.idea
+README.md
+.prettierignore
+.prettierrc.json
+docker-compose.yml
+Dockerfile
+*.md

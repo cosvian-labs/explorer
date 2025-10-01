@@ -13,16 +13,6 @@ RUN yarn install --frozen-lockfile --ignore-engines
 # Copy source code
 COPY . .
 
-# Create a non-root user
-RUN addgroup -g 1001 -S nodejs && \
-    adduser -S cosvian -u 1001 -G nodejs
-
-# Change ownership of the app directory
-RUN chown -R cosvian:nodejs /app
-
-# Switch to non-root user
-USER cosvian
-
 # Expose port 3400
 EXPOSE 3400
 
