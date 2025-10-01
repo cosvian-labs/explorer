@@ -1,0 +1,32 @@
+version: "3.8"
+
+services:
+  cosvian-explorer:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: cosvian-explorer
+    ports:
+      - "3400:3400"
+    environment:
+      - NODE_ENV=development
+      - VITE_REFRESH_INTERVAL=6000
+      - VITE_FETCH_ALL_BLOCKS=false
+      - VITE_RECENT_BLOCK_LIMIT=50
+      - VITE_COINGECKO_URL=https://api.coingecko.com
+      - VITE_GITHUB_API_URL=https://api.github.com/repos/cosmos/chain-registry/contents
+      - VITE_PINGPUB_API_URL=https://registry.ping.pub
+      - VITE_IBC_USE_GITHUB_API=false
+      - VITE_DEFAULT_CHAIN=cosvian
+      - VITE_SHOW_ONLY_COSVIAN=true
+    volumes:
+      - .:/app
+      - /app/node_modules
+    restart: unless-stopped
+    networks:
+      - cosvian-network
+
+networks:
+  cosvian-network:
+    driver: bridge
+    name: cosvian-network
