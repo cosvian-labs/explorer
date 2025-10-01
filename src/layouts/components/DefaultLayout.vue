@@ -64,7 +64,9 @@ function isNavTitle(nav: VerticalNavItems | any): nav is NavSectionTitle {
 }
 function selected(route: any, nav: NavLink) {
   const b =
-    route.path === nav.to?.path || (route.path.startsWith(nav.to?.path) && nav.title.indexOf('dashboard') === -1);
+    route.path === nav.to?.path ||
+    (route.path.startsWith(nav.to?.path) &&
+      nav.title.indexOf('dashboard') === -1);
   return b;
 }
 const blocktime = computed(() => {
@@ -92,8 +94,13 @@ const show_ad = computed(() => {
     >
       <div class="flex justify-between mt-1 pl-4 py-4 mb-1">
         <RouterLink to="/" class="flex items-center">
-          <img class="w-10 h-10 rounded-full" src="https://iili.io/KM10D1n.md.png" />
-          <h1 class="flex-1 ml-3 text-2xl font-semibold dark:text-white">Cosvian</h1>
+          <img
+            class="w-10 h-10 rounded-full"
+            src="https://iili.io/KM10D1n.md.png"
+          />
+          <h1 class="flex-1 ml-3 text-2xl font-semibold dark:text-white">
+            Cosvian
+          </h1>
         </RouterLink>
         <div
           class="pr-4 cursor-pointer xl:!hidden"
@@ -102,7 +109,11 @@ const show_ad = computed(() => {
           <Icon icon="mdi-close" class="text-2xl" />
         </div>
       </div>
-      <div v-for="(item, index) of blockchain.computedChainMenu" :key="index" class="px-2">
+      <div
+        v-for="(item, index) of blockchain.computedChainMenu"
+        :key="index"
+        class="px-2"
+      >
         <div
           v-if="isNavGroup(item)"
           :tabindex="index"
@@ -113,7 +124,12 @@ const show_ad = computed(() => {
             'collapse-close': index === 0 && !sidebarOpen,
           }"
         >
-          <input v-if="index > 0" type="checkbox" class="cursor-pointer !h-10 block" @click="changeOpen(index)" />
+          <input
+            v-if="index > 0"
+            type="checkbox"
+            class="cursor-pointer !h-10 block"
+            @click="changeOpen(index)"
+          />
           <div
             class="collapse-title !py-0 px-4 flex items-center cursor-pointer hover:bg-gray-100 dark:hover:bg-[#373f59]"
           >
@@ -126,8 +142,14 @@ const show_ad = computed(() => {
                 'text-blue-500': item?.title !== 'Favorite',
               }"
             />
-            <img v-if="item?.icon?.image" :src="item?.icon?.image" class="w-6 h-6 rounded-full mr-3" />
-            <div class="text-base capitalize flex-1 text-gray-700 dark:text-gray-200 whitespace-nowrap">
+            <img
+              v-if="item?.icon?.image"
+              :src="item?.icon?.image"
+              class="w-6 h-6 rounded-full mr-3"
+            />
+            <div
+              class="text-base capitalize flex-1 text-gray-700 dark:text-gray-200 whitespace-nowrap"
+            >
               {{ item?.title }}
             </div>
             <div
@@ -139,7 +161,10 @@ const show_ad = computed(() => {
             </div>
           </div>
           <div class="collapse-content">
-            <div v-for="(el, key) of item?.children" class="menu bg-base-100 w-full !p-0">
+            <div
+              v-for="(el, key) of item?.children"
+              class="menu bg-base-100 w-full !p-0"
+            >
               <RouterLink
                 v-if="isNavLink(el)"
                 @click="sidebarShow = false"
@@ -154,7 +179,9 @@ const show_ad = computed(() => {
                   icon="mdi:chevron-right"
                   class="mr-2 ml-3"
                   :class="{
-                    'text-white': $route.path === el?.to?.path && item?.title !== 'Favorite',
+                    'text-white':
+                      $route.path === el?.to?.path &&
+                      item?.title !== 'Favorite',
                   }"
                 />
                 <img
@@ -176,7 +203,9 @@ const show_ad = computed(() => {
               </RouterLink>
             </div>
             <div
-              v-if="index === 0 && dashboard.networkType === NetworkType.Testnet"
+              v-if="
+                index === 0 && dashboard.networkType === NetworkType.Testnet
+              "
               class="menu bg-base-100 w-full !p-0"
             >
               <RouterLink
@@ -184,8 +213,16 @@ const show_ad = computed(() => {
                 :to="`/${blockchain.chainName}/faucet`"
               >
                 <Icon icon="mdi:chevron-right" class="mr-2 ml-3"></Icon>
-                <div class="text-base capitalize text-gray-500 dark:text-gray-300">Faucet</div>
-                <div class="badge badge-sm text-white border-none badge-error ml-auto">New</div>
+                <div
+                  class="text-base capitalize text-gray-500 dark:text-gray-300"
+                >
+                  Faucet
+                </div>
+                <div
+                  class="badge badge-sm text-white border-none badge-error ml-auto"
+                >
+                  New
+                </div>
               </RouterLink>
             </div>
           </div>
@@ -211,7 +248,9 @@ const show_ad = computed(() => {
             :src="item?.icon?.image"
             class="w-6 h-6 rounded-full mr-3 border border-blue-100"
           />
-          <div class="text-base capitalize flex-1 text-gray-700 dark:text-gray-200 whitespace-nowrap">
+          <div
+            class="text-base capitalize flex-1 text-gray-700 dark:text-gray-200 whitespace-nowrap"
+          >
             {{ item?.title }}
           </div>
           <div

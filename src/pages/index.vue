@@ -13,7 +13,7 @@ const cosvianNetworks = ref([
     chainId: 'cosvian-1',
     color: '#812cd6',
     icon: '🚀',
-    enabled: true
+    enabled: true,
   },
   {
     name: 'cosvian-testnet',
@@ -22,7 +22,7 @@ const cosvianNetworks = ref([
     chainId: 'cosvian-testnet-1',
     color: '#666cff',
     icon: '🧪',
-    enabled: false
+    enabled: false,
   },
 ]);
 
@@ -72,14 +72,18 @@ const navigateToChain = (networkName: string, enabled: boolean) => {
             v-for="network in cosvianNetworks"
             :key="network.name"
             class="group"
-            :class="{ 'cursor-pointer': network.enabled, 'cursor-not-allowed opacity-60': !network.enabled }"
+            :class="{
+              'cursor-pointer': network.enabled,
+              'cursor-not-allowed opacity-60': !network.enabled,
+            }"
             @click="navigateToChain(network.name, network.enabled)"
           >
             <div
               class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg transition-all duration-300 p-8 border border-gray-200 dark:border-gray-700"
-              :class="{ 
-                'hover:shadow-2xl group-hover:border-purple-500 group-hover:scale-105': network.enabled,
-                'border-gray-300 dark:border-gray-600': !network.enabled
+              :class="{
+                'hover:shadow-2xl group-hover:border-purple-500 group-hover:scale-105':
+                  network.enabled,
+                'border-gray-300 dark:border-gray-600': !network.enabled,
               }"
             >
               <div class="flex items-center justify-between mb-6">
@@ -94,7 +98,9 @@ const navigateToChain = (networkName: string, enabled: boolean) => {
                     {{ network.icon }}
                   </div>
                   <div>
-                    <h3 class="text-2xl font-bold text-gray-900 dark:text-white">
+                    <h3
+                      class="text-2xl font-bold text-gray-900 dark:text-white"
+                    >
                       {{ network.title }}
                     </h3>
                     <p class="text-gray-500 dark:text-gray-400">
@@ -102,37 +108,47 @@ const navigateToChain = (networkName: string, enabled: boolean) => {
                     </p>
                   </div>
                 </div>
-                
+
                 <div class="flex items-center space-x-2">
-                  <div 
+                  <div
                     class="w-3 h-3 rounded-full"
-                    :class="network.enabled ? 'bg-green-500 animate-pulse' : 'bg-gray-400'"
+                    :class="
+                      network.enabled
+                        ? 'bg-green-500 animate-pulse'
+                        : 'bg-gray-400'
+                    "
                   ></div>
-                  <span 
+                  <span
                     class="text-sm font-medium"
-                    :class="network.enabled ? 'text-green-600 dark:text-green-400' : 'text-gray-500 dark:text-gray-400'"
+                    :class="
+                      network.enabled
+                        ? 'text-green-600 dark:text-green-400'
+                        : 'text-gray-500 dark:text-gray-400'
+                    "
                   >
                     {{ network.enabled ? 'Live' : 'Coming Soon' }}
                   </span>
                 </div>
               </div>
-              
+
               <p class="text-gray-600 dark:text-gray-300 mb-6">
                 {{ network.description }}
               </p>
-              
-              <button 
+
+              <button
                 class="w-full py-3 px-6 rounded-lg font-medium text-white transition-all duration-200"
-                :style="{ 
+                :style="{
                   backgroundColor: network.enabled ? network.color : '#999',
                 }"
                 :disabled="!network.enabled"
               >
-                {{ network.enabled ? `Explore ${network.title}` : 'Coming Soon' }}
-                <Icon 
+                {{
+                  network.enabled ? `Explore ${network.title}` : 'Coming Soon'
+                }}
+                <Icon
                   v-if="network.enabled"
-                  icon="mdi:arrow-right" 
-                  class="inline ml-2" 
+                  icon="mdi:arrow-right"
+                  class="inline ml-2"
                 />
               </button>
             </div>
